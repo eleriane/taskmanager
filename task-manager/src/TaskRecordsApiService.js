@@ -20,8 +20,7 @@ export default {
       return req.data
     })
   },
-  getAll() {
-    console.log(this.execute('get', '/'))
+  getAll() { 
     return this.execute('get', '/')
   },
   create(data) { 

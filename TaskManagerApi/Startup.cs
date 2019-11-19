@@ -39,16 +39,16 @@ namespace TaskManagerApi
                 });
             });*/
 
-            //services.AddCors();
+            services.AddCors();
 
-            services.AddCors(options =>
+            /*services.AddCors(options =>
                     {
                         options.AddPolicy(MyAllowSpecificOrigins,
                         builder =>
                         {
                             builder.WithOrigins("http://localhost:8080");
                         });
-                    });
+                    });*/
 
             services.AddControllers();
         }
@@ -62,9 +62,11 @@ namespace TaskManagerApi
             }
 
             //app.UseCors("VueCorsPolicy");
-            //app.UseCors(options => options.AllowAnyOrigin());
-            app.UseCors(MyAllowSpecificOrigins);
-            
+             
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()); 
+
+            //app.UseCors(MyAllowSpecificOrigins);
+
             dbContext.Database.EnsureCreated();
 
             app.UseHttpsRedirection();

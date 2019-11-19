@@ -63,7 +63,8 @@ export default {
     };
   },
   async created() {
-    this.getAll();
+    this.getAll(); 
+    console.log(this.getAll());
   },
   methods: {
     async getAll() {
