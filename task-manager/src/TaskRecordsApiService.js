@@ -24,7 +24,8 @@ export default {
     console.log(this.execute('get', '/'))
     return this.execute('get', '/')
   },
-  create(data) {
+  create(data) { 
+    console.log(data)
     return this.execute('post', '/', data)
   },
   update(id, data) {

@@ -81,10 +81,11 @@ export default {
     },
     async createTaskRecord() {
       const isUpdate = !!this.model.id;
-
+      
       if (isUpdate) {
         await api.update(this.model.id, this.model);
       } else {
+        console.log("Entrou no create");
         await api.create(this.model);
       }
 
