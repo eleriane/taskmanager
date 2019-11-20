@@ -39,7 +39,7 @@ namespace TaskManagerApi.Controllers
         public async Task Post(Tarefa model)
         {
             //Tarefa model = new Tarefa() { Descricao = tarefa.Descricao, Titulo = tarefa.Titulo };
-            var XX = await _dbContext.Tarefas.MaxAsync(f => f.Id);
+            
             model.DataCriacao = System.DateTime.Now; 
             await _dbContext.AddAsync(model);
 
