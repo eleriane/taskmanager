@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-jumbotron header="Controle de Tarefas" lead>
-      <hr/>
+      <hr />
       <b-alert :show="loading" variant="info">Loading...</b-alert>
       <b-row>
         <b-col>
@@ -20,7 +20,7 @@
                 <td>{{ record.titulo }}</td>
                 <td>{{ record.descricao }}</td>
                 <td>{{ record.statusConclusao }}</td>
-                <td>{{ record.dataCriacao }}</td>
+                <td>{{ format_date(record.dataCriacao) }}</td>
                 <td class="text-right">
                   <a href="#" @click.prevent="updateTaskRecord(record)">Edit</a> -
                   <a href="#" @click.prevent="deleteTaskRecord(record.id)">Delete</a>
@@ -64,6 +64,7 @@
 
 <script>
 import api from "@/TaskRecordsApiService";
+import moment from 'moment'
 
 export default {
   data() {
@@ -78,11 +79,16 @@ export default {
     this.getAll();
   },
   methods: {
+    format_date(value) {
+      if (value) {
+        return moment(String(value)).format("DD/MM/YYYY");
+      }
+    },
     async getAll() {
       this.loading = true;
 
       try {
-        console.log(api.getAll())
+        console.log(api.getAll());
         this.records = await api.getAll();
       } finally {
         this.loading = false;

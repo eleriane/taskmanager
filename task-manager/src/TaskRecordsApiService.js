@@ -14,7 +14,7 @@ export default {
       url: resource,
       data,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
         //Authorization: `Bearer ${accessToken}`
       }
     }).then(req => {
