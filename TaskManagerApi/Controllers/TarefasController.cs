@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using TaskManagerApi.Models;
 
 namespace TaskManagerApi.Controllers
@@ -35,6 +38,9 @@ namespace TaskManagerApi.Controllers
         [HttpPost]
         public async Task Post(Tarefa model)
         {
+            //Tarefa model = new Tarefa() { Descricao = tarefa.Descricao, Titulo = tarefa.Titulo };
+            var XX = await _dbContext.Tarefas.MaxAsync(f => f.Id);
+            model.DataCriacao = System.DateTime.Now; 
             await _dbContext.AddAsync(model);
 
             await _dbContext.SaveChangesAsync();
@@ -44,12 +50,13 @@ namespace TaskManagerApi.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Put(string id, Tarefa model)
         {
-            var exists = await _dbContext.Tarefas.AnyAsync(f => f.Id == id);
+            var exists = await _dbContext.Tarefas.AnyAsync(f => f.Id.Equals(id));
             if (!exists)
             {
                 return NotFound();
             }
 
+            model.DataAlteracao = System.DateTime.Now;
             _dbContext.Tarefas.Update(model);
 
             await _dbContext.SaveChangesAsync();
@@ -60,7 +67,7 @@ namespace TaskManagerApi.Controllers
 
         // DELETE api/Tarefas/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int id)
         {
             var entity = await _dbContext.Tarefas.FindAsync(id);
 
@@ -70,5 +77,11 @@ namespace TaskManagerApi.Controllers
 
             return Ok();
         }
+    }
+
+    public class TarefaView
+    {
+        public string Descricao { get; set; }
+        public string Titulo { get; set; }
     }
 }

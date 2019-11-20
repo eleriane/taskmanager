@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ecosta\\Documents\\Particular\\vue\\TaskManagerApi\\TaskManagerApi.csproj": {}
+    "C:\\Users\\Nane-Admin\\Documents\\Estudos\\vue\\taskmanager\\TaskManagerApi\\TaskManagerApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ecosta\\Documents\\Particular\\vue\\TaskManagerApi\\TaskManagerApi.csproj": {
+    "C:\\Users\\Nane-Admin\\Documents\\Estudos\\vue\\taskmanager\\TaskManagerApi\\TaskManagerApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ecosta\\Documents\\Particular\\vue\\TaskManagerApi\\TaskManagerApi.csproj",
+        "projectUniqueName": "C:\\Users\\Nane-Admin\\Documents\\Estudos\\vue\\taskmanager\\TaskManagerApi\\TaskManagerApi.csproj",
         "projectName": "TaskManagerApi",
-        "projectPath": "C:\\Users\\ecosta\\Documents\\Particular\\vue\\TaskManagerApi\\TaskManagerApi.csproj",
-        "packagesPath": "C:\\Users\\ecosta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ecosta\\Documents\\Particular\\vue\\TaskManagerApi\\obj\\",
+        "projectPath": "C:\\Users\\Nane-Admin\\Documents\\Estudos\\vue\\taskmanager\\TaskManagerApi\\TaskManagerApi.csproj",
+        "packagesPath": "C:\\Users\\Nane-Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nane-Admin\\Documents\\Estudos\\vue\\taskmanager\\TaskManagerApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ecosta\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Nane-Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -64,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100-preview3-014645\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100-preview1-014459\\RuntimeIdentifierGraph.json"
         }
       }
     }

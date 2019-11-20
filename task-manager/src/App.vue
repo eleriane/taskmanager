@@ -3,10 +3,10 @@
     <header>
       <b-navbar toggleable="md" type="light" variant="light">
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-        <b-navbar-brand to="/">Controle de Tarefas</b-navbar-brand>
+        <b-navbar-brand to="/">Task Manager</b-navbar-brand>
         <b-collapse is-nav id="nav-collapse">
           <b-navbar-nav> 
-            <b-nav-item to="/task-records">Task Records</b-nav-item>
+            <b-nav-item to="/task-records">Tarefas</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

@@ -1,53 +1,64 @@
 <template>
-  <div class="container-fluid mt-4">
-    <h1 class="h1">Task Records</h1>
-    <b-alert :show="loading" variant="info">Loading...</b-alert>
-    <b-row>
-      <b-col>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Value</th>
-              <th>Date Time</th>
-              <th>&nbsp;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="record in records" :key="record.id">
-              <td>{{ record.id }}</td>
-              <td>{{ record.name }}</td>
-              <td>{{ record.value }}</td>
-              <td>{{ record.dateTime }}</td>
-              <td class="text-right">
-                <a href="#" @click.prevent="updateTaskRecord(record)">Edit</a> -
-                <a href="#" @click.prevent="deleteTaskRecord(record.id)">Delete</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </b-col>
-      <b-col lg="3">
-        <b-card :title="(model.id ? 'Edit Task ID#' + model.id : 'New Task Record')">
-          <form @submit.prevent="createTaskRecord">
-            <b-form-group label="Name">
-              <b-form-input type="text" v-model="model.name"></b-form-input>
-            </b-form-group>
-            <b-form-group label="Value">
-              <b-form-input rows="4" v-model="model.value" type="number"></b-form-input>
-            </b-form-group>
-            <b-form-group label="Date Time">
-              <input type="date" :value="model.dateTime && model.dateTime.toISOString().split('T')[0]" 
-              @input="model.dateTime = $event.target.valueAsDate">
-            </b-form-group>
-            <div>
-              <b-btn type="submit" variant="success">Save Record</b-btn>
-            </div>
-          </form>
-        </b-card>
-      </b-col>
-    </b-row>
+  <div>
+    <b-jumbotron header="Controle de Tarefas" lead>
+      <hr/>
+      <b-alert :show="loading" variant="info">Loading...</b-alert>
+      <b-row>
+        <b-col>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Concluído?</th>
+                <th>Data de Inclusão</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="record in records" :key="record.id">
+                <td>{{ record.titulo }}</td>
+                <td>{{ record.descricao }}</td>
+                <td>{{ record.statusConclusao }}</td>
+                <td>{{ record.dataCriacao }}</td>
+                <td class="text-right">
+                  <a href="#" @click.prevent="updateTaskRecord(record)">Edit</a> -
+                  <a href="#" @click.prevent="deleteTaskRecord(record.id)">Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </b-col>
+        <b-col lg="3" class="text-left">
+          <b-card :title="(model.id ? 'Editando tarefa ID#' + model.titulo : 'Nova tarefa')">
+            <form @submit.prevent="createTaskRecord">
+              <b-form-group label="Título">
+                <b-form-input type="text" v-model="model.titulo"></b-form-input>
+              </b-form-group>
+
+              <b-form-textarea
+                id="textarea"
+                v-model="model.descricao"
+                placeholder="Descrição ..."
+                rows="3"
+                max-rows="6"
+              ></b-form-textarea>
+
+              <b-form-checkbox
+                id="checkbox-1"
+                v-model="model.StatusConcluido"
+                name="checkbox-1"
+                value="accepted"
+                unchecked-value="not_accepted"
+              >Concluído</b-form-checkbox>
+              <div>
+                <b-btn type="submit" variant="success">Salvar Tarefa</b-btn>
+              </div>
+            </form>
+          </b-card>
+        </b-col>
+      </b-row>
+    </b-jumbotron>
   </div>
 </template>
 
@@ -63,14 +74,15 @@ export default {
     };
   },
   async created() {
-    this.getAll(); 
     console.log(this.getAll());
+    this.getAll();
   },
   methods: {
     async getAll() {
       this.loading = true;
 
       try {
+        console.log(api.getAll())
         this.records = await api.getAll();
       } finally {
         this.loading = false;
@@ -82,7 +94,7 @@ export default {
     },
     async createTaskRecord() {
       const isUpdate = !!this.model.id;
-      
+
       if (isUpdate) {
         await api.update(this.model.id, this.model);
       } else {
